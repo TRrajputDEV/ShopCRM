@@ -1,4 +1,3 @@
-// TodoList.tsx
 import React, { useState, useEffect } from 'react';
 import { Plus, X, CheckCircle, Circle } from 'lucide-react';
 
@@ -8,44 +7,91 @@ interface Task {
     completed: boolean;
 }
 
+const API_URL = 'http://localhost/todo-app-backend/api/todos.php';
+
 const TodoList: React.FC = () => {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [taskInput, setTaskInput] = useState('');
+    const [loading, setLoading] = useState(true);
+
+    // Fetch all todos
+    const fetchTasks = async () => {
+        try {
+            const response = await fetch(API_URL);
+            const data = await response.json();
+            setTasks(data);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching tasks:', error);
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const savedTasks = localStorage.getItem('tasks');
-        if (savedTasks) {
-            setTasks(JSON.parse(savedTasks));
-        }
+        fetchTasks();
     }, []);
 
-    useEffect(() => {
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-    }, [tasks]);
-
-    const addTask = () => {
+    const addTask = async () => {
         if (taskInput.trim() === '') return;
-        
-        const newTask: Task = {
-            id: Date.now(),
-            text: taskInput.trim(),
-            completed: false,
-        };
-        setTasks(prev => [...prev, newTask]);
-        setTaskInput('');
+
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: taskInput.trim() }),
+            });
+
+            const newTask = await response.json();
+            setTasks(prev => [...prev, newTask]);
+            setTaskInput('');
+        } catch (error) {
+            console.error('Error adding task:', error);
+        }
     };
 
-    const toggleTask = (id: number) => {
-        setTasks(prev =>
-            prev.map(task =>
-                task.id === id ? { ...task, completed: !task.completed } : task
-            )
-        );
+    const toggleTask = async (id: number) => {
+        try {
+            const task = tasks.find(t => t.id === id);
+            if (!task) return;
+
+            await fetch(API_URL, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: id,
+                    completed: !task.completed
+                }),
+            });
+
+            setTasks(prev =>
+                prev.map(task =>
+                    task.id === id ? { ...task, completed: !task.completed } : task
+                )
+            );
+        } catch (error) {
+            console.error('Error toggling task:', error);
+        }
     };
 
-    const deleteTask = (id: number) => {
-        setTasks(prev => prev.filter(task => task.id !== id));
+    const deleteTask = async (id: number) => {
+        try {
+            await fetch(`${API_URL}?id=${id}`, {
+                method: 'DELETE',
+            });
+
+            setTasks(prev => prev.filter(task => task.id !== id));
+        } catch (error) {
+            console.error('Error deleting task:', error);
+        }
     };
+
+    if (loading) {
+        return <div className="text-white">Loading...</div>;
+    }
 
     return (
         <div className="space-y-6">
