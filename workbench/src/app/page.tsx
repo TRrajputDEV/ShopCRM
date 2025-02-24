@@ -4,36 +4,21 @@ export default function Home() {
   return (
     <>
       <div>
-        {/* <FollowingPointerDemo/> */}
-        <button className="btn"> Button </button>
-        <button className="btn btn-circle">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-        {/* <button className="btn btn-circle btn-outline">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button> */}
+        <div className="hero bg-base-200 min-h-screen">
+          <div className="hero-content flex-col lg:flex-row-reverse">
+            <img
+              src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+              className="max-w-sm rounded-lg shadow-2xl" />
+            <div>
+              <h1 className="text-5xl font-bold">Box Office News!</h1>
+              <p className="py-6">
+                Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+                quasi. In deleniti eaque aut repudiandae et a id nisi.
+              </p>
+              <button className="btn btn-primary">Get Started</button>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
