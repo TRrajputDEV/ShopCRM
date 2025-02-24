@@ -76,7 +76,7 @@ const WeatherCard: React.FC = () => {
         <div className="p-6 animate-fadeIn">
             <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
                 <Cloud className="w-6 h-6" />
-                Weather Near You
+                Outside Window
             </h2>
             <div className="space-y-4">
                 <div className="flex items-center gap-3 text-xl text-white">

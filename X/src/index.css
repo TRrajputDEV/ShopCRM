@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* Add this to your CSS file */
+.dropdown-content {
+  display: none;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
