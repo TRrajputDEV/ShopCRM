@@ -24,7 +24,7 @@ export default {
     addVariablesForColors,
   ],
   daisyui: {
-    themes: ["light", "dark", "cupcake", "forest", "luxury", "valentine","retro","cmyk"], // Add your preferred themes here
+    themes: ["light", "dark", "cupcake", "forest", "luxury", "valentine","retro","cmyk","night", "black"], // Add your preferred themes here
   },
 } satisfies Config;
 
