@@ -1,7 +1,7 @@
 // src/hooks/useCustomerAPI.ts
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Customer, NewCustomer } from "../types/customer";
+import { Customer, NewCustomer } from "@/types/customer";
 
 // API base URL
 const API_URL = "http://localhost/shop_api.php";

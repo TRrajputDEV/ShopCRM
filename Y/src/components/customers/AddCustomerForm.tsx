@@ -2,7 +2,7 @@ import React, { ChangeEvent } from 'react';
 import { X, UserPlus } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { NewCustomer } from '../../types/customer';
+import { NewCustomer } from '@/types/customer';
 
 interface AddCustomerFormProps {
   newCustomer: NewCustomer;
