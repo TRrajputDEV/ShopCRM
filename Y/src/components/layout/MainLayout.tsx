@@ -1,6 +1,5 @@
 // src/components/layout/MainLayout.tsx
 import React, { ReactNode } from 'react';
-import Sidebar from './Sidebar';
 import Header from './Header';
 
 interface MainLayoutProps {
