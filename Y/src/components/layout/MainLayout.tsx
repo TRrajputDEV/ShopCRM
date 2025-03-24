@@ -17,8 +17,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({
     onAddCustomer
 }) => {
     return (
-        <div className="flex h-screen bg-gray-100">
-            <Sidebar />
+        <div className="flex flex-row-reverse h-screen bg-gray-100">
+            {/* <Sidebar /> */}
             <div className="flex-1 overflow-auto">
                 <Header
                     searchTerm={searchTerm}
@@ -28,6 +28,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
                 <main className="p-6">
                     {children}
                 </main>
+                
             </div>
         </div>
     );
