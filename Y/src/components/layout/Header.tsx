@@ -18,13 +18,13 @@ const Header: React.FC<HeaderProps> = ({ searchTerm, onSearchChange, onAddCustom
                     <div className="relative">
                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
                         <Input
-                            className="pl-10 w-64"
+                            className="pl-10 w-64 text-orange-500"
                             placeholder="Search customers..."
                             value={searchTerm}
                             onChange={(e) => onSearchChange(e.target.value)}
                         />
                     </div>
-                    <Button onClick={onAddCustomer}>
+                    <Button onClick={onAddCustomer} className='bg-orange-600 hover:bg-orange-800'>
                         <Plus size={16} className="mr-2" />
                         Add Customer
                     </Button>

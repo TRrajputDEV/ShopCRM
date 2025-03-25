@@ -22,7 +22,7 @@ const CustomerDetails: React.FC<CustomerDetailsProps> = ({
 }) => {
     if (!selectedCustomer) {
         return (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-orange-600">
                 Select a customer to edit details
             </div>
         );

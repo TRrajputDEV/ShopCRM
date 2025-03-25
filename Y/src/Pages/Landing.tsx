@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
-import { ArrowRight, Zap, Menu, X, Phone, HelpCircle, FileText } from 'lucide-react';
+import { ArrowRight, Zap, Menu, X, Phone, HelpCircle } from 'lucide-react';
 
 export default function SingleScreenLanding() {
     const [isLoading, setIsLoading] = useState(true);
@@ -8,16 +8,16 @@ export default function SingleScreenLanding() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Simulate initial page load
-        const timer = setTimeout(() => {
+        // Show loading screen only on initial page load
+        const loadingTimer = setTimeout(() => {
             setIsLoading(false);
         }, 800);
 
-        return () => clearTimeout(timer);
+        return () => clearTimeout(loadingTimer);
     }, []);
 
     const handleNavigation = () => {
-        // Add a brief transition effect before navigating
+        // Show loading screen only when navigating to CustomerManagement
         setIsLoading(true);
         setTimeout(() => {
             navigate('/CustomerManagement');
@@ -71,13 +71,6 @@ export default function SingleScreenLanding() {
                                 <Phone className="w-5 h-5" />
                                 <span>Contact Us</span>
                             </NavLink>
-                            <NavLink 
-                                to="/report-issues" 
-                                className="text-gray-800 hover:text-orange-600 transition-colors duration-300 flex items-center space-x-2"
-                            >
-                                <FileText className="w-5 h-5" />
-                                <span>Source Code</span>
-                            </NavLink>
                         </div>
 
                         {/* Mobile Menu Toggle */}
@@ -112,14 +105,6 @@ export default function SingleScreenLanding() {
                         >
                             <Phone className="w-6 h-6" />
                             <span>Contact Us</span>
-                        </NavLink>
-                        <NavLink 
-                            to="/report-issues" 
-                            className="text-2xl text-gray-800 hover:text-orange-600 flex items-center space-x-3"
-                            onClick={toggleMenu}
-                        >
-                            <FileText className="w-6 h-6" />
-                            <span>Report Issues</span>
                         </NavLink>
                     </div>
                 </div>

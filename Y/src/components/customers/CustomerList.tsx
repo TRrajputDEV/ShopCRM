@@ -35,7 +35,7 @@ const CustomerList: React.FC<CustomerListProps> = ({
 
     if (filteredCustomers.length === 0) {
         return (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-orange-600">
                 {searchTerm ? 'No customers match your search' : 'No customers found. Add your first customer!'}
             </div>
         );
