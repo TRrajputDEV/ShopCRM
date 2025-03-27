@@ -1,25 +1,74 @@
 // src/hooks/useCustomerAPI.ts
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { Customer, NewCustomer } from "@/types/customer";
 
-// API base URL
-const API_URL = "http://localhost/shop_api.php";
+// API base URL - Ensure this matches your PHP script location
+const API_URL = "http://localhost/shop-api.php";
+
+// Enhanced error handling interface
+interface APIError {
+    status: string;
+    message: string;
+    details?: string;
+}
 
 export const useCustomerAPI = () => {
     const [customers, setCustomers] = useState<Customer[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string>("");
 
+    // Centralized error handling function
+    const handleError = (err: unknown) => {
+        if (axios.isAxiosError(err)) {
+            const axiosError = err as AxiosError<APIError>;
+            const errorMessage = axiosError.response?.data?.message 
+                || axiosError.message 
+                || "An unexpected error occurred";
+            
+            console.error("API Error Details:", {
+                status: axiosError.response?.status,
+                message: errorMessage,
+                fullError: axiosError
+            });
+
+            setError(errorMessage);
+        } else if (err instanceof Error) {
+            console.error("Network or Runtime Error:", err);
+            setError(err.message);
+        } else {
+            console.error("Unknown Error:", err);
+            setError("An unexpected error occurred");
+        }
+    };
+
     const fetchCustomers = async () => {
         setLoading(true);
+        setError("");
+
         try {
             const response = await axios.get(`${API_URL}?action=get_customers`);
-            setCustomers(response.data.records || []);
-            setError("");
+            
+            // Extensive logging for debugging
+            console.log('Full API Response:', response.data);
+            
+            // Robust data extraction with multiple fallback strategies
+            const customerRecords = 
+                response.data.records || 
+                response.data || 
+                [];
+            
+            // Validate customer data structure
+            const validCustomers = customerRecords.filter((customer: any) => 
+                customer.id && 
+                customer.name && 
+                customer.email
+            );
+
+            setCustomers(validCustomers);
         } catch (err) {
-            console.error("Error fetching customers:", err);
-            setError("Failed to load customers. Please try again.");
+            handleError(err);
+            setCustomers([]); // Ensure customers is reset on error
         } finally {
             setLoading(false);
         }
@@ -27,17 +76,15 @@ export const useCustomerAPI = () => {
 
     const addCustomer = async (newCustomer: NewCustomer): Promise<boolean> => {
         try {
-            await axios.post(`${API_URL}?action=create_customer`, newCustomer);
-            await fetchCustomers();
-            setError("");
+            const response = await axios.post(`${API_URL}?action=create_customer`, newCustomer);
+            
+            // Log successful creation
+            console.log('Customer Creation Response:', response.data);
+            
+            await fetchCustomers(); // Refresh customer list
             return true;
         } catch (err) {
-            console.error("Error adding customer:", err);
-            if (axios.isAxiosError(err)) {
-                setError(err.response?.data?.message || "Failed to add customer");
-            } else {
-                setError("Failed to add customer");
-            }
+            handleError(err);
             return false;
         }
     };
@@ -46,41 +93,51 @@ export const useCustomerAPI = () => {
         editedCustomer: Partial<Customer>
     ): Promise<boolean> => {
         try {
-            await axios.post(`${API_URL}?action=update_customer`, editedCustomer);
-            await fetchCustomers();
-            setError("");
+            const response = await axios.post(`${API_URL}?action=update_customer`, editedCustomer);
+            
+            // Log successful update
+            console.log('Customer Update Response:', response.data);
+            
+            await fetchCustomers(); // Refresh customer list
             return true;
         } catch (err) {
-            console.error("Error updating customer:", err);
-            if (axios.isAxiosError(err)) {
-                setError(err.response?.data?.message || "Failed to update customer");
-            } else {
-                setError("Failed to update customer");
-            }
+            handleError(err);
             return false;
         }
     };
 
     const deleteCustomer = async (id: number): Promise<boolean> => {
         try {
-            await axios.post(`${API_URL}?action=delete_customer`, { id });
-            await fetchCustomers();
-            setError("");
+            const response = await axios.post(`${API_URL}?action=delete_customer`, { id });
+            
+            // Log successful deletion
+            console.log('Customer Deletion Response:', response.data);
+            
+            await fetchCustomers(); // Refresh customer list
             return true;
         } catch (err) {
-            console.error("Error deleting customer:", err);
-            if (axios.isAxiosError(err)) {
-                setError(err.response?.data?.message || "Failed to delete customer");
-            } else {
-                setError("Failed to delete customer");
-            }
+            handleError(err);
             return false;
         }
     };
 
-    // Initialize data on mount
+    // Initialize data on mount with retry mechanism
     useEffect(() => {
-        fetchCustomers();
+        const initializeData = async () => {
+            await fetchCustomers();
+        };
+
+        initializeData();
+
+        // Optional: Add retry mechanism
+        const retryTimer = setTimeout(() => {
+            if (loading) {
+                console.warn('Initial data fetch timed out. Retrying...');
+                initializeData();
+            }
+        }, 10000); // 10-second timeout
+
+        return () => clearTimeout(retryTimer);
     }, []);
 
     return {
@@ -91,6 +148,6 @@ export const useCustomerAPI = () => {
         addCustomer,
         updateCustomer,
         deleteCustomer,
-        setError,
+        setError, // Expose for manual error management
     };
 };
