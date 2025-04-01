@@ -21,7 +21,7 @@ export default function SingleScreenLanding() {
         setIsLoading(true);
         setTimeout(() => {
             navigate('/CustomerManagement');
-        }, 500);
+        }, 5000);
     };
 
     const toggleMenu = () => {
