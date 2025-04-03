@@ -7,7 +7,12 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import Layout from './Layout.jsx'
 import Landing from './Pages/Landing.js'
 import ContactUs from './components/ui/Contact.js';
-import AboutUs from './components/ui/About.js';
+import AboutUs from './components/landing/AboutUs.js';
+import Documentation from './Pages/Documentation.js';
+import PrivacyPolicy from './components/landing/PrivacyPolicy.js';
+import TermsOfService from './Pages/TermsOfService.js';
+// import Blog from './Pages/Blog/index.js';
+// import BlogPost from './Pages/BlogPost.js';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +21,10 @@ const router = createBrowserRouter(
       <Route path='CustomerManagement' element={<CustomerManagement />} />
       <Route path='Contact' element={<ContactUs />} />
       <Route path='about' element={<AboutUs />} />
+      <Route path='documentation' element={<Documentation />} />
+      <Route path='Privacy-Policy' element={<PrivacyPolicy />} />
+      <Route path='terms-of-service' element={<TermsOfService />} />
+      {/* <Route path='/blog/index' element={<BlogPost />} /> */}
       </Route>
   )
 )
