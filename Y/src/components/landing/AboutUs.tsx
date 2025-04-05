@@ -46,14 +46,15 @@ const AboutUs: React.FC = () => {
     ];
 
     const timeline: TimelineEvent[] = [
-        { year: '2018', event: 'Shop CRM founded with a mission to simplify customer management for small businesses' },
-        { year: '2019', event: 'Launched first version of our platform, serving over 100 small retail shops' },
-        { year: '2020', event: 'Expanded features to include inventory management and customer analytics' },
-        { year: '2021', event: 'Reached milestone of 1,000 active businesses using Shop CRM' },
-        { year: '2022', event: 'Introduced mobile app and advanced reporting capabilities' },
-        { year: '2023', event: 'Expanded team to 25 employees and opened second office location' },
-        { year: '2024', event: 'Released Shop CRM Enterprise edition for larger businesses' }
+        { year: 'Week 1', event: 'Kick-off: Requirement analysis and project planning.' },
+        { year: 'Week 2', event: 'Design phase: Create wireframes, plan UI/UX, and design the database schema.' },
+        { year: 'Week 3', event: 'Setup: Configure development environment, version control, and project scaffolding.' },
+        { year: 'Week 4', event: 'Development: Implement core functionalities (customer management basics).' },
+        { year: 'Week 5', event: 'Feature integration: Add inventory management and basic customer analytics.' },
+        { year: 'Week 6', event: 'Testing: Conduct user testing, refine features, and fix bugs.' },
+        { year: 'Week 7', event: 'Deployment: Final touches, documentation, and project wrap-up.' }
     ];
+    
 
     const breadcrumbs = [
         { label: 'About Us', path: '/about' }
@@ -74,7 +75,7 @@ const AboutUs: React.FC = () => {
                                 intuitive, and powerful for businesses of all sizes.
                             </p>
                             <Link
-                                to="/contact"
+                                to="/getintouch"
                                 className="inline-block bg-orange-600 hover:bg-orange-700 text-white font-medium px-6 py-3 rounded-lg transition-colors"
                             >
                                 Get in Touch
@@ -194,7 +195,7 @@ const AboutUs: React.FC = () => {
                                 Try Shop CRM
                             </Link>
                             <Link
-                                to="/contact"
+                                to="/contactSales"
                                 className="inline-block bg-orange-700 hover:bg-orange-800 text-white font-medium px-6 py-3 rounded-lg transition-colors"
                             >
                                 Contact Sales

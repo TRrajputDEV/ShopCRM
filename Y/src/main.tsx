@@ -15,6 +15,8 @@ import BlogPage from './Pages/Blog.js';
 import BlogPost from './Pages/BlogPost.js';
 import ContactSection from '@/components/landing/ContactSection.js';
 import Support from './components/landing/support.js';
+import ContactSales from './components/landing/contactSales.js';
+import GetInTouch from './components/landing/GetinTouch.js';
 // Removed incomplete import statement
 
 const router = createBrowserRouter(
@@ -30,6 +32,8 @@ const router = createBrowserRouter(
       <Route path="/blog" element={<BlogPage />} />
       <Route path="/blog/:id" element={<BlogPost />} />
       <Route path="support" element={<Support />} />
+      <Route path="contactSales" element={<ContactSales />} />
+      <Route path="getintouch" element={<GetInTouch />} />
       </Route>
   )
 )

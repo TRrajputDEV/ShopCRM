@@ -5,20 +5,20 @@ export default function TestimonialsSection() {
     const testimonials = [
         {
             name: "Prakul Dhiman",
-            business: "Fresh Finds Market",
-            image: "/api/placeholder/80/80",
-            quote: "This system has transformed how I manage my grocery store. I can now track customer preferences and send targeted promotions that actually work!"
+            business: "DhimanTravels",
+            image: "PrakulDhiman.png",
+            quote: "This system has transformed how I manage my Travel Expenses. I can now track customer preferences and send targeted promotions that actually work!"
         },
         {
             name: "Yash kalakoti",
-            business: "Tech Haven",
-            image: "/api/placeholder/80/80",
+            business: "theorythriftwear",
+            image: "yashKalakoti.png",
             quote: "The balance tracking feature has helped me reduce overdue accounts by 45%. My cash flow has never been better, and my customers appreciate the professional approach."
         },
         {
             name: "Piyush Yadav",
-            business: "Bloom Boutique",
-            image: "/api/placeholder/80/80",
+            business: "Car ReviewX",
+            image: "piyushReview.png",
             quote: "Since implementing this CRM, our repeat business has increased by 30%. The customer insights help us stock exactly what our clients want."
         }
     ];
