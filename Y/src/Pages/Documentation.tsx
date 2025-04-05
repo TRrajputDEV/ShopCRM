@@ -3,7 +3,7 @@ import React, { useState, ChangeEvent, JSX } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Book, Users, Settings, ShoppingBag, BarChart, HelpCircle, Coffee } from 'lucide-react';
 import PageNavigation from '../components/landing/PageNavigation';
-import Footer from '../components/landing/Footer';
+// import Footer from '../components/landing/Footer';
 
 interface Category {
   id: string;
@@ -219,7 +219,7 @@ const Documentation: React.FC = () => {
         </div>
       </main>
       
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

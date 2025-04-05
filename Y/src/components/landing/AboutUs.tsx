@@ -20,28 +20,28 @@ interface TimelineEvent {
 const AboutUs: React.FC = () => {
     const teamMembers: TeamMember[] = [
         {
-            name: 'Sarah Johnson',
+            name: 'Tushar Tanwar',
             role: 'CEO & Founder',
-            image: '/api/placeholder/300/300',
-            bio: 'Sarah founded Shop CRM with a vision to make customer relationship management accessible to businesses of all sizes.'
+            image: 'profile-pic (8).png',
+            bio: 'Tushar Tanwar founded Shop CRM with a vision to make customer relationship management accessible to businesses of all sizes.'
         },
         {
-            name: 'Michael Chen',
+            name: 'Harmeet Singh',
             role: 'CTO',
-            image: '/api/placeholder/300/300',
-            bio: 'Michael brings 15 years of software development experience, focusing on building scalable and intuitive CRM solutions.'
+            image: 'HarmeetPIC.jpg',
+            bio: 'Harmeet brings 15 years of software development experience, focusing on building scalable and intuitive CRM solutions.'
         },
         {
-            name: 'Jessica Williams',
+            name: 'Abhay Rana',
             role: 'Head of Customer Success',
-            image: '/api/placeholder/300/300',
-            bio: 'Jessica ensures our customers get the most out of Shop CRM, leading our dedicated customer success team.'
+            image: 'Abhay Ranaaa.png',
+            bio: 'Abhay Rana ensures our customers get the most out of Shop CRM, leading our dedicated customer success team.'
         },
         {
-            name: 'David Patel',
+            name: 'Deepanshu Negi',
             role: 'Lead Designer',
-            image: '/api/placeholder/300/300',
-            bio: 'David is passionate about creating beautiful, user-friendly interfaces that make customer management a breeze.'
+            image: 'deepanshuuu.jpg',
+            bio: 'Deepanshu Negi is passionate about creating beautiful, user-friendly interfaces that make customer management a breeze.'
         }
     ];
 
