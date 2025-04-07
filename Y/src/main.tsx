@@ -13,10 +13,12 @@ import PrivacyPolicy from './components/landing/PrivacyPolicy.js';
 import TermsOfService from './Pages/TermsOfService.js';
 import BlogPage from './Pages/Blog.js';
 import BlogPost from './Pages/BlogPost.js';
-import ContactSection from '@/components/landing/ContactSection.js';
+// import ContactSection from '@/components/landing/ContactSection.js';
 import Support from './components/landing/support.js';
 import ContactSales from './components/landing/contactSales.js';
 import GetInTouch from './components/landing/GetinTouch.js';
+import FooterContact from './components/landing/footercontact.js';
+import PremiumPage from './components/Payment/getpremium.js';
 // Removed incomplete import statement
 
 const router = createBrowserRouter(
@@ -24,7 +26,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<Layout />}>
       <Route path='' element={<Landing />} />
       <Route path='CustomerManagement' element={<CustomerManagement />} />
-      <Route path='contact' element={<ContactSection />} />
+      <Route path='contact' element={<FooterContact />} />
       <Route path='about' element={<AboutUs />} />
       <Route path='documentation' element={<Documentation />} />
       <Route path='Privacy-Policy' element={<PrivacyPolicy />} />
@@ -34,6 +36,7 @@ const router = createBrowserRouter(
       <Route path="support" element={<Support />} />
       <Route path="contactSales" element={<ContactSales />} />
       <Route path="getintouch" element={<GetInTouch />} />
+      <Route path="GetPremium" element={<PremiumPage />} />
       </Route>
   )
 )

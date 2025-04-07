@@ -1,7 +1,7 @@
-// src/components/layout/MainLayout.tsx
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState, useEffect } from 'react';
 import Header from './Header';
-import GlobalBackground from '@/components/common/GlobalBackground'; // Adjust the path if necessary
+import GlobalBackground from '@/components/common/GlobalBackground';
+import { ArrowUp } from 'lucide-react'; // Import the arrow icon
 
 interface MainLayoutProps {
     children: ReactNode;
@@ -16,22 +16,76 @@ const MainLayout: React.FC<MainLayoutProps> = ({
     onSearchChange,
     onAddCustomer,
 }) => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [showScrollToTop, setShowScrollToTop] = useState(false);
+    
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
+    // For the scroll to top button
+    useEffect(() => {
+        const handleScroll = () => {
+            setShowScrollToTop(window.scrollY > 300);
+        };
+        
+        // Add event listener
+        window.addEventListener('scroll', handleScroll);
+        
+        // Clean up
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+    
+    // Function to scroll to top when button is clicked
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+
     return (
-        <>
+        <div className="flex flex-col min-h-screen bg-gray-50 relative">
             {/* Global Background rendered behind all content */}
             <GlobalBackground />
-            <div className="flex flex-row-reverse h-screen bg-gray-100 relative">
-                {/* <Sidebar /> */}
-                <div className="flex-1 overflow-auto relative z-10">
-                    <Header
-                        searchTerm={searchTerm}
-                        onSearchChange={onSearchChange}
-                        onAddCustomer={onAddCustomer}
-                    />
-                    <main className="p-6">{children}</main>
-                </div>
+            
+            {/* Header */}
+            <Header
+                searchTerm={searchTerm}
+                onSearchChange={onSearchChange}
+                onAddCustomer={onAddCustomer}
+                isMenuOpen={isMenuOpen}
+                toggleMenu={toggleMenu}
+            />
+            
+            {/* Content */}
+            <div className="pt-16 flex-grow relative z-10">
+                {/* This padding-top ensures content starts below the fixed header */}
+                <main className="max-w-7xl mx-auto p-4 md:p-6">
+                    {children}
+                </main>
             </div>
-        </>
+            
+            {/* Footer Section */}
+            <footer className="bg-white border-t border-gray-200 relative z-10">
+                <div className="max-w-7xl mx-auto px-4 py-6 text-center text-gray-500 text-sm">
+                    © {new Date().getFullYear()} ShopCRM. All rights reserved.
+                </div>
+            </footer>
+            
+            {/* Scroll to Top Button */}
+            {showScrollToTop && (
+                <button 
+                    onClick={scrollToTop}
+                    className="fixed bottom-6 right-6 p-3 bg-blue-600 text-white rounded-full shadow-lg z-50 hover:bg-blue-700 transition-all duration-300"
+                    aria-label="Scroll to top"
+                >
+                    <ArrowUp size={24} />
+                </button>
+            )}
+        </div>
     );
 };
 

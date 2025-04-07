@@ -55,112 +55,119 @@ const CustomerTabs: React.FC<CustomerTabsProps> = ({
     onAdd
 }) => {
     return (
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="mb-4">
-                <TabsTrigger value="list">Customer List</TabsTrigger>
-                <TabsTrigger value="details">Customer Details</TabsTrigger>
-                <TabsTrigger value="add">Add Customer</TabsTrigger>
-                <TabsTrigger value="notes">Notes</TabsTrigger>
-                <TabsTrigger value="calculators">Shop Calculators</TabsTrigger>
-            </TabsList>
+        <div>
+            <Tabs value={activeTab} onValueChange={setActiveTab}>
+                <div className="overflow-x-auto">
+                    <TabsList className="mb-4 flex flex-row sm:justify-evenly gap-2 min-w-max sm:min-w-full">
+                        <TabsTrigger value="list" className="flex-shrink-0">Customer List</TabsTrigger>
+                        <TabsTrigger value="details" className="flex-shrink-0">Customer Details</TabsTrigger>
+                        <TabsTrigger value="add" className="flex-shrink-0">Add Customer</TabsTrigger>
+                        <TabsTrigger value="notes" className="flex-shrink-0">Notes</TabsTrigger>
+                        <TabsTrigger value="calculators" className="flex-shrink-0">Calculators</TabsTrigger>
+                    </TabsList>
+                </div>
 
-            {/* Customer List Tab */}
-            <TabsContent value="list">
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Customers</CardTitle>
-                        <CardDescription>
-                            Manage your customer information and balances.
-                        </CardDescription>
-                    </CardHeader>
-                    <div className="max-h-[calc(100vh-300px)] overflow-y-auto">
-                        <CardContent>
-                            <CustomerList
-                                customers={customers}
-                                loading={loading}
-                                searchTerm={searchTerm}
-                                onSelectCustomer={onSelectCustomer}
-                                onDeleteCustomer={onDeleteCustomer}
-                            />
-                        </CardContent>
-                    </div>
-                </Card>
-            </TabsContent>
 
-            {/* Customer Details Tab */}
-            <TabsContent value="details">
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Edit Customer</CardTitle>
-                        <CardDescription>Update customer information</CardDescription>
-                    </CardHeader>
-                    <div className="max-h-[calc(100vh-300px)] overflow-y-auto">
-                        <CardContent>
-                            <CustomerDetails
-                                selectedCustomer={selectedCustomer}
-                                editedCustomer={editedCustomer}
-                                onEditChange={onEditChange}
-                                onCancel={onCancel}
-                                onSave={onSave}
-                            />
-                        </CardContent>
-                    </div>
-                </Card>
-            </TabsContent>
 
-            {/* Add Customer Tab */}
-            <TabsContent value="add">
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Add New Customer</CardTitle>
-                        <CardDescription>Enter customer information</CardDescription>
-                    </CardHeader>
-                    <div className="max-h-[calc(100vh-300px)] overflow-y-auto">
-                        <CardContent>
-                            <AddCustomerForm
-                                newCustomer={newCustomer}
-                                onChange={onNewCustomerChange}
-                                onCancel={onCancel}
-                                onAdd={onAdd}
-                            />
-                        </CardContent>
-                    </div>
-                </Card>
-            </TabsContent>
+                {/* Customer List Tab */}
+                <TabsContent value="list">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Customers</CardTitle>
+                            <CardDescription>
+                                Manage your customer information and balances.
+                            </CardDescription>
+                        </CardHeader>
+                        <div className="max-h-[calc(100vh-300px)] overflow-y-auto">
+                            <CardContent>
+                                <CustomerList
+                                    customers={customers}
+                                    loading={loading}
+                                    searchTerm={searchTerm}
+                                    onSelectCustomer={onSelectCustomer}
+                                    onDeleteCustomer={onDeleteCustomer}
+                                />
+                            </CardContent>
+                        </div>
+                    </Card>
+                </TabsContent>
 
-            {/* Notes Tab - New Feature */}
-            <TabsContent value="notes">
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Shop Notes</CardTitle>
-                        <CardDescription>Keep track of important information and reminders</CardDescription>
-                    </CardHeader>
-                    <div className="max-h-[calc(100vh-300px)] overflow-y-auto">
-                        <CardContent>
-                            <CustomerNotes 
-                                notes={notes}
-                                onNotesChange={onNotesChange}
-                            />
-                        </CardContent>
-                    </div>
-                </Card>
-            </TabsContent>
+                {/* Customer Details Tab */}
+                <TabsContent value="details">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Edit Customer</CardTitle>
+                            <CardDescription>Update customer information</CardDescription>
+                        </CardHeader>
+                        <div className="max-h-[calc(100vh-300px)] overflow-y-auto">
+                            <CardContent>
+                                <CustomerDetails
+                                    selectedCustomer={selectedCustomer}
+                                    editedCustomer={editedCustomer}
+                                    onEditChange={onEditChange}
+                                    onCancel={onCancel}
+                                    onSave={onSave}
+                                />
+                            </CardContent>
+                        </div>
+                    </Card>
+                </TabsContent>
 
-            {/* Calculators Tab - New Feature */}
-            <TabsContent value="calculators">
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Shop Calculators</CardTitle>
-                        <CardDescription>Useful calculators for your business</CardDescription>
-                    </CardHeader>
-                    <div className="max-h-[calc(100vh-300px)] overflow-y-auto">
-                        <CardContent>
-                            <ShopCalculators />
-                        </CardContent>
-                    </div>
-                </Card>
-            </TabsContent>
-        </Tabs>
+                {/* Add Customer Tab */}
+                <TabsContent value="add">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Add New Customer</CardTitle>
+                            <CardDescription>Enter customer information</CardDescription>
+                        </CardHeader>
+                        <div className="max-h-[calc(100vh-300px)] overflow-y-auto">
+                            <CardContent>
+                                <AddCustomerForm
+                                    newCustomer={newCustomer}
+                                    onChange={onNewCustomerChange}
+                                    onCancel={onCancel}
+                                    onAdd={onAdd}
+                                />
+                            </CardContent>
+                        </div>
+                    </Card>
+                </TabsContent>
+
+                {/* Notes Tab - New Feature */}
+                <TabsContent value="notes">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Shop Notes</CardTitle>
+                            <CardDescription>Keep track of important information and reminders</CardDescription>
+                        </CardHeader>
+                        <div className="max-h-[calc(100vh-300px)] overflow-y-auto">
+                            <CardContent>
+                                <CustomerNotes
+                                    notes={notes}
+                                    onNotesChange={onNotesChange}
+                                />
+                            </CardContent>
+                        </div>
+                    </Card>
+                </TabsContent>
+
+                {/* Calculators Tab - New Feature */}
+                <TabsContent value="calculators">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Shop Calculators</CardTitle>
+                            <CardDescription>Useful calculators for your business</CardDescription>
+                        </CardHeader>
+                        <div className="max-h-[calc(100vh-300px)] overflow-y-auto">
+                            <CardContent>
+                                <ShopCalculators />
+                            </CardContent>
+                        </div>
+                    </Card>
+                </TabsContent>
+            </Tabs>
+        </div>
+
     );
 };
 
@@ -217,7 +224,7 @@ export default CustomerTabs;
 //     isMobile = false
 // }) => {
 //     // Filter customers based on search term
-//     const filteredCustomers = customers.filter(customer => 
+//     const filteredCustomers = customers.filter(customer =>
 //         customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
 //         customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
 //         customer.phone.includes(searchTerm)
