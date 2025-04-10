@@ -20,7 +20,7 @@ const WeatherCard: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
-    const apikey = "03d1a5668aa59af0252ec04cf2299ca4";
+    const apikey = "your_api_key_here"; // Replace with your actual API key
     const URL = "https://api.openweathermap.org/data/2.5/weather?&units=metric";
 
     useEffect(() => {
