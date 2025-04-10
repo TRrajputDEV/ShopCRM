@@ -271,8 +271,8 @@ const TermsOfService = () => {
                   <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
                     <p className="text-gray-800 font-medium">Shop CRM Legal Department</p>
                     <p className="text-gray-700">Email: legal@shopcrm.com</p>
-                    <p className="text-gray-700">Address: 123 Commerce Street, Suite 500, San Francisco, CA 94103</p>
-                    <p className="text-gray-700">Phone: (555) 123-4567</p>
+                    <p className="text-gray-700">Address: Jalandhar Punjab , Lovely Professioanl University</p>
+                    <p className="text-gray-700">Phone: 8685829604</p>
                   </div>
                 </div>
               </section>

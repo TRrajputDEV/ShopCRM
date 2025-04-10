@@ -6,14 +6,12 @@ import './index.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import Layout from './Layout.jsx'
 import Landing from './Pages/Landing.js'
-// import ContactUs from './components/ui/Contact.js';
 import AboutUs from './components/landing/AboutUs.js';
 import Documentation from './Pages/Documentation.js';
 import PrivacyPolicy from './components/landing/PrivacyPolicy.js';
 import TermsOfService from './Pages/TermsOfService.js';
 import BlogPage from './Pages/Blog.js';
 import BlogPost from './Pages/BlogPost.js';
-// import ContactSection from '@/components/landing/ContactSection.js';
 import Support from './components/landing/support.js';
 import ContactSales from './components/landing/contactSales.js';
 import GetInTouch from './components/landing/GetinTouch.js';
